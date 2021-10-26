@@ -1,4 +1,4 @@
-module github.com/nilsponsard/go-starter
+module github.com/nilsponsard/mc-whitelist-bot
 
 go 1.16
 

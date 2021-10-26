@@ -2,7 +2,7 @@ package ping
 
 import (
 	cli "github.com/jawher/mow.cli"
-	"github.com/nilsponsard/go-starter/pkg/verbosity"
+	"github.com/nilsponsard/mc-whitelist-bot/pkg/verbosity"
 )
 
 // setup ping command

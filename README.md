@@ -1,4 +1,4 @@
-# go-starter project
+# mc-whitelist-bot project
 You will need to change the url in `go.mod` and the names in `.env` and `Makefile` to match your project name & VCS hoster
 
 

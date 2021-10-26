@@ -1,4 +1,4 @@
-% Manuel d’utilisation de go-starter
+% Manuel d’utilisation de mc-whitelist-bot
 
 ## Introduction
 

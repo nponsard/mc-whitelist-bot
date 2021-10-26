@@ -1,4 +1,4 @@
-% go-starter user’s manual
+% mc-whitelist-bot user’s manual
 
 ## Introduction
 
