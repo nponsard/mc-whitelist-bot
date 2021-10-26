@@ -77,7 +77,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	username := strings.Trim(m.Content, " \t\n")
 
-	conn := rcon.New("127.0.0.1:25575", "jesuissautax", time.Millisecond*1)
+	conn := rcon.New("127.0.0.1:25575", "jesuissautax", time.Millisecond*50)
 
 	output, err := conn.Execute("whitelist add " + username)
 	if err != nil {
