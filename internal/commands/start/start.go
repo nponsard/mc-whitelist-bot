@@ -14,8 +14,9 @@ import (
 )
 
 var (
-	mapLock  sync.Mutex
-	queueMap map[string]chan int
+	mapLock      sync.Mutex
+	rconPassword *string
+	queueMap     map[string]chan int
 )
 
 // setup ping command
@@ -24,6 +25,7 @@ func Start(job *cli.Cmd) {
 	queueMap = make(map[string]chan int)
 
 	token := job.StringArg("TOKEN", "", "Discord token")
+	rconPassword = job.StringArg("RCON_PASSWORD", "", "RCON password")
 
 	// function to execute
 
@@ -77,7 +79,7 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	username := strings.Trim(m.Content, " \t\n")
 
-	conn := rcon.New("127.0.0.1:25575", "jesuissautax", time.Millisecond*50)
+	conn := rcon.New("127.0.0.1:25575", *rconPassword, time.Millisecond*500)
 
 	output, err := conn.Execute("whitelist add " + username)
 	if err != nil {
