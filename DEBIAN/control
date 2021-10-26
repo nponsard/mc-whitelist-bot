@@ -1,0 +1,8 @@
+Package: $NAME
+Version: $VERSION
+Section: main
+Priority: optional
+Architecture: amd64
+Depends: 
+Maintainer: PONSARD Nils <nilsponsard@gmail.com>
+Description: $DESCRIPTION
