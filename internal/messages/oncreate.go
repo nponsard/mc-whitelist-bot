@@ -35,18 +35,25 @@ func OnCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	username := strings.Trim(m.Content, " \t\n")
 
+	connError := false
+
 	for _, rconAddr := range conf.Rcons {
 
 		conn := rcon.New(rconAddr.Address, rconAddr.Password, time.Millisecond*500)
 		output, err := conn.Execute("whitelist add " + username)
 
 		if err != nil {
+			connError = true
 			verbosity.Error(err, output)
-			s.MessageReactionAdd(m.ChannelID, m.ID, "❌")
 		}
 
 		verbosity.Debug(output)
 	}
-	s.MessageReactionAdd(m.ChannelID, m.ID, "✅")
+
+	if connError {
+		s.MessageReactionAdd(m.ChannelID, m.ID, "❌")
+	} else {
+		s.MessageReactionAdd(m.ChannelID, m.ID, "✅")
+	}
 
 }
