@@ -43,11 +43,10 @@ func OnCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 		if err != nil {
 			verbosity.Error(err, output)
 			s.MessageReactionAdd(m.ChannelID, m.ID, "❌")
-		} else {
-			s.MessageReactionAdd(m.ChannelID, m.ID, "✅")
 		}
 
 		verbosity.Debug(output)
 	}
+	s.MessageReactionAdd(m.ChannelID, m.ID, "✅")
 
 }
