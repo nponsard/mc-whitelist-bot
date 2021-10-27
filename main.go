@@ -6,6 +6,7 @@ import (
 
 	cli "github.com/jawher/mow.cli"
 	"github.com/nilsponsard/mc-whitelist-bot/internal/commands"
+	"github.com/nilsponsard/mc-whitelist-bot/internal/config"
 	"github.com/nilsponsard/mc-whitelist-bot/pkg/files"
 	"github.com/nilsponsard/mc-whitelist-bot/pkg/verbosity"
 )
@@ -24,7 +25,7 @@ func main() {
 
 	var (
 		verbose     = app.BoolOpt("d debug", false, "Debug mode, more verbose operations")
-		appPath     = app.StringOpt("c config", path.Join(defaultPath, "config.json"), "Path to the config file")
+		appPath     = app.StringOpt("a app-folder", defaultPath, "Path to the app files")
 		disableLogs = app.BoolOpt("disable-logs", false, "Disable the saving of logs")
 	)
 
@@ -44,6 +45,8 @@ func main() {
 		verbosity.SetupLog(*verbose, path.Join(defaultPath, "logs.txt"))
 
 		verbosity.SetLogging(!*disableLogs)
+
+		config.LoadConfig(path.Join(*appPath, "config.json"))
 
 	}
 
