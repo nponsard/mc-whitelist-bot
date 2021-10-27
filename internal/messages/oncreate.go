@@ -23,13 +23,18 @@ func OnCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 	}
 	verbosity.Debug(m.ChannelID)
 
-	msgChannel, err := s.State.Channel(m.ChannelID)
+	// check if it’s a monitored channel
 
-	if err != nil {
-		verbosity.Error(err)
-		return
+	monitored := false
+
+	for _, id := range conf.Discord.Channels {
+		if id == m.ChannelID {
+			monitored = true
+			break
+		}
 	}
-	if msgChannel.Name != "whitelist" {
+
+	if !monitored {
 		return
 	}
 

@@ -17,8 +17,8 @@ type Discord struct {
 }
 
 type Config struct {
-	Rcons   []Rcon    `json:"rcons"`
-	Discord []Discord `json:"discord"`
+	Rcons   []Rcon  `json:"rcons"`
+	Discord Discord `json:"discord"`
 }
 
 var config Config
