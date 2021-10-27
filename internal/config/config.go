@@ -61,6 +61,19 @@ func LoadConfig(filePath string) (c *Config, err error) {
 	// insert default config if empty
 
 	if len(content) == 0 {
+
+		config = Config{
+			Discord: Discord{
+				Token: "put_your_token_here", Channels: []string{"put_your_discord_channels_to_monitor_here"},
+			},
+			Rcons: []Rcon{
+				{
+					Address:  "address:port",
+					Password: "password",
+				},
+			},
+		}
+
 		configJson, err := json.MarshalIndent(config, "", "\t")
 		if err != nil {
 			return &config, err

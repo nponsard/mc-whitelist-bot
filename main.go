@@ -46,7 +46,10 @@ func main() {
 
 		verbosity.SetLogging(!*disableLogs)
 
-		config.LoadConfig(path.Join(*appPath, "config.json"))
+		_, err := config.LoadConfig(path.Join(*appPath, "config.json"))
+		if err != nil {
+			verbosity.Error("cannot load config : ", err)
+		}
 
 	}
 

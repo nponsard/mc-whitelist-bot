@@ -29,6 +29,13 @@ func Start(job *cli.Cmd) {
 
 		conf := config.GetConfig()
 
+		// check the config
+
+		if len(conf.Discord.Token) == 0 || conf.Discord.Token == "put_your_token_here" {
+			verbosity.Error("Discord token not configured, configure it in config.json (default : ~/.mc-whitelist-bot/config.json)")
+			cli.Exit(3)
+		}
+
 		// create a client
 
 		discord, err := discordgo.New("Bot " + conf.Discord.Token)
