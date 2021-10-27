@@ -1,6 +1,6 @@
 # Compilation
 mc-whitelist-bot: go.sum main.go */**/*.go .env */**/**/*.go
-	./scripts/build.sh
+	CGO_ENABLED=0 ./scripts/build.sh
 
 mc-whitelist-bot.exe : go.sum main.go */**/*.go .env */**/**/*.go
 	env CC=x86_64-w64-mingw32-gcc CGO_ENABLED=1 GOOS=windows GOARCH=amd64 ./scripts/build.sh
